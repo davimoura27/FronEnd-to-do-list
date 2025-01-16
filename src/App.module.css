@@ -1,0 +1,11 @@
+*{
+  font-family:'Nunito';
+}
+.container {
+  height: 100vh; 
+  width: 100%; 
+  background-image: url('./img/img.png'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+}

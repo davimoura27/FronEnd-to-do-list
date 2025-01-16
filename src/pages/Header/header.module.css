@@ -1,0 +1,116 @@
+:root {
+  /* Cores principais */
+  --primary-dark: #0c2340;
+  /* Azul marinho escuro */
+  --primary: #183761;
+  /* Azul marinho médio */
+  --primary-light: #2c5282;
+  /* Azul marinho claro */
+
+  /* Cores de destaque */
+  --gold: #c5a572;
+  /* Dourado suave */
+  --gold-light: #d4b483;
+  /* Dourado claro */
+  --gold-dark: #b69661;
+  /* Dourado escuro */
+
+  /* Cores neutras */
+  --neutral-dark: #1a202c;
+  /* Quase preto */
+  --neutral: #4a5568;
+  /* Cinza médio */
+  --neutral-light: #edf2f7;
+  /* Cinza claro */
+  --white: #ffffff;
+
+  /* Cores de estado */
+  --success: #276749;
+  /* Verde escuro */
+  --error: #9b2c2c;
+  /* Vermelho escuro */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  overflow-y: border-box;
+  font-family: 'Nunito';
+
+}
+
+.container {
+  background: #332c2c49;
+
+  padding: 1.2rem 2.5rem;
+  box-shadow: 0 4px 12px rgba(8, 12, 17, 0.678);
+  display: flex;
+  justify-content: space-between;
+  
+  list-style: none;
+
+}
+
+
+
+.title{
+  align-self: flex-start;
+  text-transform: uppercase;
+  text-shadow:1px 1px 0px #183761,
+              2px 2px 0px #c5a572,
+              3px 3px 0px #9b2c2c ,
+              4px 4px 0px #183761,
+              5px 5px 0px #276749;
+
+
+
+}
+
+
+.configButton{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+
+
+.button {
+
+  background: #332c2c49;
+  border: 2px solid var(--error);
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.button:hover {
+  background-color: var(--error);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(197, 165, 114, 0.3);
+}
+
+
+
+.home {
+  text-decoration: none;
+  color: #1a202c;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+}
+.home:hover{
+   transform: translateY(-2px);
+ 
+  color: var(--error);
+}
