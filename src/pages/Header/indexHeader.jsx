@@ -2,12 +2,13 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { authService } from "../../service/api";
 import { Modal } from "../Modal/indexModal";
+import { User } from "phosphor-react";
 import styles from "./header.module.css"
 
 export function Header(){
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(authService.isAuthenticated());
-    const [userName, setUserName] = useState("");
+    const [username, setUserName] = useState("");
     
     useEffect(() =>{
         setIsLoggedIn(authService.isAuthenticated());
@@ -15,7 +16,7 @@ export function Header(){
 
     const handleLoginSuccess = (userData) => {
         setIsLoggedIn(true);
-        setUserName(userData.userName);
+        setUserName(userData.username);
         setIsModalOpen(false);
     };
 
@@ -36,10 +37,16 @@ return(
             <Link className={styles.home} to={"/"}>Home</Link>
         </li>
         <li>
+            {isLoggedIn ? (
+                <div className={styles.userInfo} onClick={handleLogout}>
+                  <User size={24} weight="fill" className={styles.userIcon}/>
+                  <span className={styles.username}>{username}</span>
+                </div>
+            ):(
             <button className={styles.button} onClick={()=> setIsModalOpen(true)}>
                 Login
             </button>
-
+            )}
         </li>
         </div>
      
