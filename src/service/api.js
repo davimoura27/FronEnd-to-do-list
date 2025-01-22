@@ -35,7 +35,7 @@ export const authService = {
 export const loginUser = async (username, password) => {
     try {
         const response = await api.post('/auth/login', { username, password });
-        console.log(response.data.token)
+        console.log(  response.data.token )
         if (response.status === 200 && response.data) {
            
 
