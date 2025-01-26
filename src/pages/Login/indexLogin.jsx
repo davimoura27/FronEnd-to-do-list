@@ -69,10 +69,7 @@ const SignUp = ({ isOpen, onClose, onToggle }) => {
 
                 </form>
 
-                <p className={style.loginAccount}>Já tem uma conta? {''}
-                    <a className={style.loginAccountLink} href="#" onClick={onToggle}>Faça login</a>
-                </p>
-
+              
             </div>
         </div>
 

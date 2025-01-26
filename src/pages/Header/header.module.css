@@ -73,6 +73,10 @@
   justify-content: flex-end;
   gap: 10px;
 }
+.containerButton{
+  display: flex;
+  gap: 10px;
+}
 
 
 

@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
-import { authService } from "../../service/api";
-import { Modal } from "../Modal/indexModal";
+import { useEffect, useState } from "react";
 import { User } from "phosphor-react";
-import styles from "./header.module.css"
+import { Modal } from "../Modal/indexModal";
+import styles from "./header.module.css";
 
-export function Header(){
+export function Header() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(authService.isAuthenticated());
+    const [isSignUp, setIsSignUp] = useState(false); // Novo estado para controlar se é login ou registro
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUserName] = useState("");
-    
-    useEffect(() =>{
-        setIsLoggedIn(authService.isAuthenticated());
-    },[]);
+
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        if (storedUser) {
+            setIsLoggedIn(true);
+            setUserName(storedUser.username);
+        }
+    }, []);
 
     const handleLoginSuccess = (userData) => {
         setIsLoggedIn(true);
@@ -21,44 +24,53 @@ export function Header(){
     };
 
     const handleLogout = () => {
-        authService.logout();
+        localStorage.removeItem("user");
         setIsLoggedIn(false);
         setUserName("");
     };
 
-return(
-    <div className={styles.container}>
-        
-            <h1 className={styles.title}>tasks up to date</h1>
-       
-        <div className={styles.configButton}>
+    return (
+        <div className={styles.container}>
+            <h1 className={styles.title}>Tasks Up to Date</h1>
 
-        <li>
-            <Link className={styles.home} to={"/"}>Home</Link>
-        </li>
-        <li>
-            {isLoggedIn ? (
-                <div className={styles.userInfo} onClick={handleLogout}>
-                  <User size={24} weight="fill" className={styles.userIcon}/>
-                  <span className={styles.username}>{username}</span>
-                </div>
-            ):(
-            <button className={styles.button} onClick={()=> setIsModalOpen(true)}>
-                Login
-            </button>
-            )}
-        </li>
+            <div className={styles.configButton}>
+                <li className={styles.containerButton}>
+                    {isLoggedIn ? (
+                        <div className={styles.userInfo} onClick={handleLogout}>
+                            <User size={24} weight="fill" className={styles.userIcon} />
+                            <span className={styles.username}>{username}</span>
+                        </div>
+                    ) : (
+                        <>
+                            <button
+                                className={styles.button}
+                                onClick={() => {
+                                    setIsSignUp(false); // Exibir formulário de login
+                                    setIsModalOpen(true);
+                                }}
+                            >
+                                Login
+                            </button>
+                            <button
+                                className={styles.button}
+                                onClick={() => {
+                                    setIsSignUp(true); // Exibir formulário de registro
+                                    setIsModalOpen(true);
+                                }}
+                            >
+                                Register
+                            </button>
+                        </>
+                    )}
+                </li>
+            </div>
+
+            <Modal
+                isOpen={isModalOpen}
+                isSignUp={isSignUp} // Passa o estado de registro
+                onClose={() => setIsModalOpen(false)}
+                onLoginSuccess={handleLoginSuccess}
+            />
         </div>
-     
-
-       <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onLoginSuccess={handleLoginSuccess}
-      />
-
-    </div>
-)
-
-
+    );
 }

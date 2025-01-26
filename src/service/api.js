@@ -8,43 +8,48 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
+   const user = localStorage.getItem('user');
+   if(user){
+     const {token} = JSON.parse(user);
+     config.headers.Authorization = `Bearer ${token}`;
+   }
+   return config;
 });
 
 
 export const authService = {
-    login: (token) => {
-        localStorage.setItem('token', token);
-        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    login: (userData) => {
+        localStorage.setItem('user',JSON.stringify(userData));
+        api.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`;
     },
     
     logout: () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('user');
         delete api.defaults.headers.common['Authorization'];
     },
     
     isAuthenticated: () => {
-        return !!localStorage.getItem('token');
-    }
+        return !!localStorage.getItem('user');
+    },
+    getUser:() =>{
+        const user = localStorage.getItem('user');
+        return user ? JSON.parse(user) : null;
+    },
 };
 
 export const loginUser = async (username, password) => {
     try {
         const response = await api.post('/auth/login', { username, password });
-        console.log(  response.data.token )
+      
         if (response.status === 200 && response.data) {
            
-
-            authService.login(response.data.token);
-            return {
+             const userData={
                 username,
-                token: response.data.token
-            };
-        }
+                token:response.data.token,
+             }
+             authService.login(userData);
+             return userData;
+            }
         throw new Error('Falha na autenticação');
     } catch (error) {
         console.error('[Login]:', error.message);
