@@ -31,7 +31,7 @@ export function Header() {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Tasks Up to Date</h1>
+            <h1 className={styles.title}>Tarefas do dia</h1>
 
             <div className={styles.configButton}>
                 <li className={styles.containerButton}>
@@ -45,20 +45,20 @@ export function Header() {
                             <button
                                 className={styles.button}
                                 onClick={() => {
-                                    setIsSignUp(false); // Exibir formulário de login
+                                    setIsSignUp(false); 
                                     setIsModalOpen(true);
                                 }}
                             >
-                                Login
+                                Entrar
                             </button>
                             <button
                                 className={styles.button}
                                 onClick={() => {
-                                    setIsSignUp(true); // Exibir formulário de registro
+                                    setIsSignUp(true); 
                                     setIsModalOpen(true);
                                 }}
                             >
-                                Register
+                                Registrar
                             </button>
                         </>
                     )}

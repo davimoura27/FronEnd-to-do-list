@@ -9,3 +9,25 @@
   background-repeat: no-repeat; 
   background-position: center; 
 }
+.container {
+  position: relative; /* Necessário para que o pseudo-elemento ::before seja posicionado corretamente */
+  height: 100vh; 
+  width: 100%; 
+  background-image: url('./img/img.png'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  overflow: hidden; /* Impede que a imagem se estenda além dos limites da div */
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: inherit; /* Herda a imagem de fundo da div */
+  filter: blur(8px); /* Aplica o desfoque */
+  z-index: -1; /* Coloca o pseudo-elemento atrás do conteúdo */
+}

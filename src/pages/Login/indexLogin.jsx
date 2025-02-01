@@ -4,29 +4,43 @@ import "axios";
 import PropTypes from "prop-types";
 import style from './login.module.css'
 
-const SignUp = ({ isOpen, onClose, onToggle }) => {
+const SignUp = ({ isOpen, onClose}) => {
     const [formData, setFormData] = useState({
         fullName: '',
         username: '',
+        email:'',
         password: ''
     });
+    const[isLoading, setIsLoading] = useState(false)
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        try {
-            const response = await api.post('/users/register', formData);
-            alert('Usuário registrado com sucesso!');
-            onClose();
-        } catch (error) {
-            if(error.response?.status === 409){
-                alert("Nome de usuario ja existe!")
-            } else{
-
-                alert('Erro ao registrar usuário');
-            }
-            
+        setIsLoading(true);
+        const user = {
+            fullName: formData.fullName,
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
         }
+
+      
+    try {
+        const response = await api.post("/users/register", user);
+        if (response.status === 201 || response.status === 200) {
+          alert("Usuário registrado com sucesso! Verifique o email.");
+          onClose();
+        }
+      } catch (error) {
+        if (error.response && error.response.data) {
+          alert(`Erro ao cadastrar: ${error.response.data.message}`);
+        } else {
+          alert("Erro ao se conectar com o servidor");
+        }
+      } finally{
+        setIsLoading(false);
+      }
     };
+  
     if (!isOpen) return null;
 
     return (
@@ -40,8 +54,9 @@ const SignUp = ({ isOpen, onClose, onToggle }) => {
                         <input
                             type="text"
                             id="name"
-                            onChange={e => setFormData({ ...formData, name: e.target.value })}
+                            onChange={e => setFormData({ ...formData, fullName: e.target.value })}
                             required
+                            disabled = {isLoading}
                         />
                     </div>
 
@@ -52,6 +67,18 @@ const SignUp = ({ isOpen, onClose, onToggle }) => {
                             id="userName"
                             onChange={e => setFormData({ ...formData, username: e.target.value })}
                             required
+                            disabled = {isLoading}
+                        />
+                    </div>
+
+                    <div className={style.inputContainer}>
+                        <label htmlFor="email">Email:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            onChange={e => setFormData({ ...formData, email: e.target.value })}
+                            required
+                            disabled = {isLoading}
                         />
                     </div>
 
@@ -62,10 +89,17 @@ const SignUp = ({ isOpen, onClose, onToggle }) => {
                             id="password"
                             onChange={e => setFormData({ ...formData, password: e.target.value })}
                             required
+                            disabled = {isLoading}
                         />
                     </div>
-                    <button className={style.submitButton} type="submit">
-                        Criar conta</button>
+                    <button 
+                    className={style.submitButton} 
+                    type="submit"
+                    disabled = {isLoading}                    
+                    >
+                        {isLoading ? 'Registrando...': 'Registrar'}
+                        
+                        </button>
 
                 </form>
 
@@ -79,7 +113,7 @@ const SignUp = ({ isOpen, onClose, onToggle }) => {
 SignUp.propTypes = {
     isOpen:PropTypes.bool.isRequired,
     onClose:PropTypes.func.isRequired,
-    onToggle:PropTypes.func.isRequired
+   
 };
 export default SignUp;
 /* const [email, setEmail] = useState('');

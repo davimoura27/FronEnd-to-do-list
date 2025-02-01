@@ -40,10 +40,7 @@
 }
 
 .container {
-  background: #332c2c49;
-
   padding: 1.2rem 2.5rem;
-  box-shadow: 0 4px 12px rgba(8, 12, 17, 0.678);
   display: flex;
   justify-content: space-between;
   
@@ -56,12 +53,12 @@
 .title{
   align-self: flex-start;
   text-transform: uppercase;
-  text-shadow:1px 1px 0px #183761,
+  text-shadow:1px 1px 0px #c3cad4,
               2px 2px 0px #c5a572,
               3px 3px 0px #9b2c2c ,
               4px 4px 0px #183761,
               5px 5px 0px #276749;
-
+   font-size: 3rem;
 
 
 }
@@ -82,25 +79,44 @@
 
 .button {
 
-  background: #332c2c49;
-  border: 2px solid var(--error);
-  padding: 0.2rem 0.6rem;
+  background: linear-gradient(135deg, #1b5eb6, #d33751);
+  color: white;
+  padding: 8px 24px;
+  border: none;
   border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(255, 117, 140, 0.4);
   position: relative;
   overflow: hidden;
 }
 
 .button:hover {
-  background-color: var(--error);
-  color: var(--white);
+  background: linear-gradient(135deg, #104b97, #cc2c47);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(197, 165, 114, 0.3);
+  box-shadow: 0 6px 15px rgba(255, 117, 140, 0.6);
+}
+
+.button:active{
+  transform: scale(0.95);
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 10%, transparent 70%);
+  top: -50%;
+  left: -50%;
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.button:focus::after {
+  transform: scale(1);
 }
 
 
