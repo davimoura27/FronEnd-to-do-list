@@ -1,17 +1,35 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Outlet } from "react-router-dom"
 import { Header } from "../pages/Header/indexHeader"
 import { Home } from "../pages/Home/indexHome"
+import { CreatList } from "../pages/Tarefas/indexCreatTarefas"
 
 
 export const Router = () => {
     return (
-        <>
-      
-        <Header />
-        <Routes>          
-            <Route path="/" element={<Home />} />
+        <Routes>
+
+            <Route element={<LayoutHeader />}>
+                <Route path="/"  element={<Home />} />
+            </Route>
+            
+            <Route  element = {<LayoutHeader/>}>
+
+            <Route path="/lista" element={<CreatList />} />
+            </Route>
         </Routes>
-   
+
+
+    )
+};
+
+
+const LayoutHeader = () => {
+    return (
+        <>
+            <Header />
+            <Outlet />
+
         </>
     )
 }
+

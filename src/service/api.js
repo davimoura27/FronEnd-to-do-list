@@ -7,6 +7,13 @@ export const api = axios.create({
     }
 });
 
+export const taskService = {
+    getTasks: () => api.get('/tarefas'),
+    createTask:(task) => api.post('/tarefas', task),
+    updateTask:(id, task) => api.put(`/tarefas/${id}`, task),
+    deleteTask:(id) => api.delete(`/tarefas/${id}`)
+}
+
 api.interceptors.request.use((config) => {
    const user = localStorage.getItem('user');
    if(user){

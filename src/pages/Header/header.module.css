@@ -30,6 +30,10 @@
   --error: #9b2c2c;
   /* Vermelho escuro */
 }
+@font-face {
+  font-family: "MinhaFont";
+  src: url('../../assets/fonts/MinhaFont.ttf') format('truetype');
+}
 
 * {
   margin: 0;
@@ -45,7 +49,7 @@
   justify-content: space-between;
   
   list-style: none;
-
+  
 }
 
 
@@ -53,14 +57,17 @@
 .title{
   align-self: flex-start;
   text-transform: uppercase;
-  text-shadow:1px 1px 0px #c3cad4,
-              2px 2px 0px #c5a572,
-              3px 3px 0px #9b2c2c ,
-              4px 4px 0px #183761,
-              5px 5px 0px #276749;
+  color: #4d8ab3;
    font-size: 3rem;
-
-
+   font-family: 'MinhaFont';
+ 
+    background: linear-gradient(135deg,  #194e94, #e02e4b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 36px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(255, 117, 140, 0.4);
+    padding: 10px;
 }
 
 

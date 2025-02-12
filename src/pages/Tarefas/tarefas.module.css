@@ -1,0 +1,172 @@
+
+
+.body {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+       
+
+}
+
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: rgb(252, 252, 252);
+    flex-direction: column;
+    padding: 2rem 3rem;
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    max-height: 80vh;
+
+    gap: 20px;
+}
+
+
+.criarTarefa{
+    display: flex;
+    align-items:flex-start;
+    flex-direction: column;
+    gap: 10px;
+    
+
+}
+.buttonCategoria{
+    width: 610px;
+    
+}
+.tituloPesquisa input{
+    width: 490px;
+}
+.tituloPesquisa button{
+    background-color: #007bff;
+    color: #fdfafa;
+    border-radius: 4px;
+    border: #007bff;
+    cursor: pointer;
+    transition: all 0.3 ease;
+    font-weight: 600;
+    
+}
+.tituloPesquisa button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(12, 35, 64, 0.2);
+    background-color: #064b96;
+}
+
+.containerButton {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    font-size: 1.2rem;
+    gap: 10px;
+    
+
+}
+
+.containerButton select,
+.containerButton input {
+    text-align: center;
+    padding: 0.2rem 0.5rem;
+}
+
+
+
+.listaTarefa {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: white;
+    width: 100%;
+}
+
+.todasTarefas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.status {
+    display: flex;
+    gap: 5px;
+    margin-left: 5px;
+}
+
+.status button {
+    padding: 10px;
+    cursor: pointer;
+    color: #fdfafa;
+    border-radius: 4px;
+    border: #ddd;
+    
+}
+.status button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(12, 35, 64, 0.2);
+}
+
+.complete {
+    background-color: #42be4c;
+    border-radius: 4px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+.complete:hover{
+    background-color: #227429;
+}
+
+.deletar {
+    background-color: rgb(233, 50, 50);
+    border-radius: 4px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+.deletar:hover{
+    background-color: rgb(180, 33, 33); 
+}
+
+.edit {
+    background-color: rgb(24, 164, 219);
+    border-radius: 4px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+.edit:hover{
+    background-color: rgb(12, 117, 158); 
+}
+
+.tituloPesquisa {
+    display: flex;
+    gap: 10px;
+}
+
+.tituloPesquisa button {
+    display: flex;
+    justify-content: center;
+    width: 90px;
+    height: 25px;
+    align-items: center;
+
+}
+
+.completar {
+    text-decoration: line-through;
+    opacity: 0.6;
+}

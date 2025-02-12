@@ -2,14 +2,21 @@ import { useEffect, useState } from "react";
 import { User } from "phosphor-react";
 import { Modal } from "../Modal/indexModal";
 import styles from "./header.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 export function Header() {
+     const navigate = useNavigate(); 
+ 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isSignUp, setIsSignUp] = useState(false); // Novo estado para controlar se é login ou registro
+    const [isSignUp, setIsSignUp] = useState(false); 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUserName] = useState("");
 
+   
+
     useEffect(() => {
+
         const storedUser = JSON.parse(localStorage.getItem("user"));
         if (storedUser) {
             setIsLoggedIn(true);
@@ -32,7 +39,11 @@ export function Header() {
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Tarefas do dia</h1>
-
+          
+          <div>
+            <button onClick={() => navigate('/lista') } > Lista</button>
+          </div>
+           
             <div className={styles.configButton}>
                 <li className={styles.containerButton}>
                     {isLoggedIn ? (
@@ -58,7 +69,7 @@ export function Header() {
                                     setIsModalOpen(true);
                                 }}
                             >
-                                Registrar
+                                Criar Conta
                             </button>
                         </>
                     )}

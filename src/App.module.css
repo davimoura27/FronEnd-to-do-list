@@ -1,33 +1,21 @@
+html,
+body {
+
+    height: 100%;
+    overflow-y: hidden;
+    margin: 0;
+    padding: 0;
+    
+}
 *{
   font-family:'Nunito';
 }
 .container {
-  height: 100vh; 
-  width: 100%; 
-  background-image: url('./img/img.png'); 
-  background-size: cover; 
-  background-repeat: no-repeat; 
-  background-position: center; 
-}
-.container {
-  position: relative; /* Necessário para que o pseudo-elemento ::before seja posicionado corretamente */
-  height: 100vh; 
-  width: 100%; 
-  background-image: url('./img/img.png'); 
-  background-size: cover; 
-  background-repeat: no-repeat; 
-  background-position: center; 
-  overflow: hidden; /* Impede que a imagem se estenda além dos limites da div */
+
+background: linear-gradient(100deg, #251a1a,rgba(10, 10, 10, 0.692),rgba(24, 26, 37, 0.884));
+min-height: 100vh;
+ 
 }
 
-.container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: inherit; /* Herda a imagem de fundo da div */
-  filter: blur(8px); /* Aplica o desfoque */
-  z-index: -1; /* Coloca o pseudo-elemento atrás do conteúdo */
-}
+
+
