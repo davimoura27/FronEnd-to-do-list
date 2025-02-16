@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import SignUp from "../Login/indexLogin";
 import style from "./modal.module.css";
 import { loginUser } from "../../service/api";
+import { useNavigate } from "react-router-dom";
 
 export function Modal({ isOpen, isSignUp, onClose, onLoginSuccess }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -17,15 +19,18 @@ export function Modal({ isOpen, isSignUp, onClose, onLoginSuccess }) {
 
         try {
             const data = await loginUser(username, password);
+            console.log("Resposta da Api ao fazer login: ", data)
+
             if (data && data.accessToken) {
-                localStorage.setItem("user", JSON.stringify({ token: data.accessToken, username: data.username }));
+                localStorage.setItem("user", 
+                JSON.stringify({ token: data.accessToken,
+                    userId:data.userId || data.id,
+                     username: data.username }));
             }
             setUsername("");
             setPassword("");
-            onLoginSuccess({
-                ...data,
-                username: data.username || username,
-            });
+            onLoginSuccess(data);
+            navigate("/lista");
         } catch (error) {
             setError(error.response?.data?.message || "Erro ao fazer login. Verifique suas credenciais!");
         } finally {

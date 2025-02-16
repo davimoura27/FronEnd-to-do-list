@@ -34,15 +34,14 @@ export function Header() {
         localStorage.removeItem("user");
         setIsLoggedIn(false);
         setUserName("");
+        navigate("/");
     };
 
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Tarefas do dia</h1>
           
-          <div>
-            <button onClick={() => navigate('/lista') } > Lista</button>
-          </div>
+         
            
             <div className={styles.configButton}>
                 <li className={styles.containerButton}>

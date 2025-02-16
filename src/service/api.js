@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { use } from 'react';
 
 export const api = axios.create({
     baseURL: 'http://localhost:8080',
@@ -8,8 +9,20 @@ export const api = axios.create({
 });
 
 export const taskService = {
-    getTasks: () => api.get('/tarefas'),
-    createTask:(task) => api.post('/tarefas', task),
+    getTasks: () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if(!user) return Promise.reject("Usuaio não autenticado");
+        return api.get(`/tarefas?userId = ${user.userId}`);
+    },
+    createTask:(task) => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if(!user || !user.userId) {
+            console.error("Erro:Usuario não autenticado ou sem Id")
+            return Promise.reject("Usuario não autenticado");
+        }
+            return api.post("/tarefas", {...task, userId: user.userId});
+    
+    },
     updateTask:(id, task) => api.put(`/tarefas/${id}`, task),
     deleteTask:(id) => api.delete(`/tarefas/${id}`)
 }
@@ -33,6 +46,7 @@ export const authService = {
     logout: () => {
         localStorage.removeItem('user');
         delete api.defaults.headers.common['Authorization'];
+        window.location.href = "/";
     },
     
     isAuthenticated: () => {
@@ -52,6 +66,7 @@ export const loginUser = async (username, password) => {
            
              const userData={
                 username,
+                userId:response.data.userId,
                 token:response.data.token,
              }
              authService.login(userData);

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import style from "../Tarefas/tarefas.module.css"
 import { taskService } from "../../service/api";
 import "axios";
+import { useNavigate } from "react-router-dom";
 
 export function CreatList() {
    const [lista, setLista] = useState([]);
@@ -11,6 +12,7 @@ export function CreatList() {
    const [status, setStatus] = useState("");
    const [editarLista, setEditarLista] = useState(null);
    const [completarTarefa, setCompletarTarefa] = useState(new Set());
+   const navigate = useNavigate();
 
 
    const getTarefas = async () => {
@@ -23,6 +25,11 @@ export function CreatList() {
       }
    }
    useEffect(() => {
+      const user = JSON.parse(localStorage.getItem("user"))
+      if (!user) {
+         navigate("/");
+         return;
+      }
       getTarefas();
    }, []);
 
@@ -35,14 +42,16 @@ export function CreatList() {
       }
 
       try {
+       const statusValido = status || "pendente";
+
         if(editarLista){
          await taskService.updateTask(editarLista.id,{
             titulo,
             categoria,
-            status,
+            status:statusValido,
          });
         } else{
-         await taskService.createTask({titulo, categoria,status});
+         await taskService.createTask({titulo, categoria,status:statusValido});
         }
         setCategoria("");
         setTitulo(""); 
@@ -51,7 +60,7 @@ export function CreatList() {
         getTarefas();
 
       } catch (error) {
-         console.error('Erro ao criar tarefa', error)
+         console.error('Erro ao criar tarefa', error.response?.data || error)
       }
    }
 
@@ -71,21 +80,25 @@ export function CreatList() {
          setCategoria(tarefa.categoria);
      }
 
-   const completeTarefa = (id) => {
-      setCompletarTarefa((prev) =>{
-         const newCompleted = new Set(prev);
-         if(newCompleted.has(id)){
-            newCompleted.delete(id);
-         } else{
-            newCompleted.add(id);
-         }
-         return newCompleted;
-      })
-   }
-   const tarefasfiltro = lista.filter((tarefa) =>{
+   const completeTarefa = async (id, statusAtual) => {
+      try {
+         const novoStatus = statusAtual === "completo" ? "pendente" : "completo";
+         
+          await taskService.updateTask(id,{status:novoStatus});
+
+          setLista((prevLista) =>
+         prevLista.map((tarefa) =>
+         tarefa.id === id ? {...tarefa, status:novoStatus} : tarefa
+         )
+         );
+      } catch (error) {
+         console.error("Erro ao atualizar status da tarefa" , error)
+      }
+   };
+   const tarefasfiltro = lista.filter((tarefa) => {
       return filtroCategoria === "todos" || tarefa.categoria === filtroCategoria;
    });
-
+   
 
    return (
       <div className={style.body}>
@@ -162,14 +175,14 @@ export function CreatList() {
                   ) :
                      tarefasfiltro.map((listas) => (
                         <div key={listas.id} className={style.todasTarefas}>
-                           <div className={`${style.categoria} ${completarTarefa.has(listas.id) ? style.completar : ""}`}>
+                          <div className={`${style.categoria} ${listas.status === "completo" ? style.completar : ""}`}>
                               <p className={style.titulo}>{listas.titulo}</p>
                               <p className={style.categoryList}>({listas.categoria})</p>
                            </div>
                            <div className={style.status}>
                               <button className={style.complete} onClick={()=> completeTarefa(listas.id)}>Completar</button>
-                              <button className={style.deletar} onClick={() => deleteTarefa(listas.id)}><i class="fa-solid fa-trash"></i></button>
-                              <button className={style.edit} onClick={() => formeditarTarefa(listas)}><i class="fa-solid fa-pen-to-square"></i></button>
+                              <button className={style.deletar} onClick={() => deleteTarefa(listas.id)}><i className="fa-solid fa-trash"></i></button>
+                              <button className={style.edit} onClick={() => formeditarTarefa(listas)}><i className="fa-solid fa-pen-to-square"></i></button>
                            </div>
                         </div>
 
