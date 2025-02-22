@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(12, 35, 64, 0.411);
+   
     backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
@@ -13,7 +13,7 @@
     
  }
  .modal{
-    background: var(--white);
+    background: white;
     border: 1px solid rgba(197,165,114,0.1);
     padding: 2.5rem 3.5rem;
     border-radius: 12px;
@@ -45,18 +45,20 @@
         font-weight: 700;
         letter-spacing: -0.5px;
         margin-bottom: 1.2rem;
-        color: var(--primary-dark);
+        color: #33a14b;
         
     }
     .containerGroup{
         margin-bottom: 1rem;
+        color: #33a14b;
     }
     .containerGroup label{
         display: block;
         margin-bottom: 0.6rem;
-        color: var(--primary);
+        color:#33a14b;
         font-weight: 600;
         font-size: 0.95rem;
+        
     }
     .containerGroup input{
         width: 100%;
@@ -64,7 +66,9 @@
         border: 2px solid var(--neutral-light);
         font-size: 1rem;
         transition: all 0.2s ease;
+        border: #33a14b solid 1px;
         background-color: var(--white);
+        
     }
     .containerGroup input:focus{
         border-color: var(--error);
@@ -73,8 +77,8 @@
     .submitButton{
         width: 100%;
         padding: 0.6rem;
-        background: linear-gradient(135deg, #1b5eb6, #d33751);
-        color: var(--white);
+        background:#33a14b;
+        color: white;
         border: none;
         border-radius: 6px;
         cursor: pointer;
@@ -88,7 +92,7 @@
         
     }
     .submitButton:hover{
-        background: linear-gradient(135deg, #134586, #c92742);
+        background:#237034;
         transform: translateY(-2px);
         box-shadow: 0 6px 16px rgba(12, 35, 64, 0.2);
     }

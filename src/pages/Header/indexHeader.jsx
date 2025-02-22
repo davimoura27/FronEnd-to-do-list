@@ -3,6 +3,7 @@ import { User } from "phosphor-react";
 import { Modal } from "../Modal/indexModal";
 import styles from "./header.module.css";
 import { useNavigate } from "react-router-dom";
+import img from "../../img/logo5.png"
 
 
 export function Header() {
@@ -36,13 +37,18 @@ export function Header() {
         setUserName("");
         navigate("/");
     };
-
+    
     return (
+        <div className={styles.containerBody}>
         <div className={styles.container}>
+            <div className={styles.logoContainer}>
+            <img className={styles.imagem} src={img} alt="" width={40} />
             <h1 className={styles.title}>Tarefas do dia</h1>
-          
-         
            
+            </div>
+         
+      
+         
             <div className={styles.configButton}>
                 <li className={styles.containerButton}>
                     {isLoggedIn ? (
@@ -51,36 +57,42 @@ export function Header() {
                             <span className={styles.username}>{username}</span>
                         </div>
                     ) : (
-                        <>
+                        <>  
+                        
+
+                 
                             <button
-                                className={styles.button}
+                                className={styles.buttonEntrar}
                                 onClick={() => {
                                     setIsSignUp(false); 
                                     setIsModalOpen(true);
                                 }}
-                            >
+                                >
                                 Entrar
                             </button>
                             <button
-                                className={styles.button}
+                                className={styles.buttonCriar}
                                 onClick={() => {
                                     setIsSignUp(true); 
                                     setIsModalOpen(true);
                                 }}
-                            >
+                                >
                                 Criar Conta
                             </button>
+                           
                         </>
                     )}
                 </li>
+           
             </div>
-
             <Modal
                 isOpen={isModalOpen}
-                isSignUp={isSignUp} // Passa o estado de registro
+                isSignUp={isSignUp} 
                 onClose={() => setIsModalOpen(false)}
                 onLoginSuccess={handleLoginSuccess}
             />
+        </div>
+            <div className={styles.linha}></div>
         </div>
     );
 }

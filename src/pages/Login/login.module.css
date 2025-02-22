@@ -1,26 +1,26 @@
 .container{
-   position:fixed;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   background-color: rgba(12, 35, 64, 0.411);
-   backdrop-filter: blur(4px);
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   z-index: 1000;
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(178, 187, 197, 0.089);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
    
 }
 .modal{
-background: var(--white);
-border: 1px solid rgba(197,165,114,0.1);
-padding: 2.5rem 3.5rem;
-border-radius: 12px;
-width: 100%;
-max-width: 500px;
-position: relative;
-box-shadow: 0 8px 32px rgba(12, 35, 64,0.15);
+    background: white;
+    border: 1px solid rgba(197,165,114,0.1);
+    padding: 2.5rem 3.5rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(12, 35, 64,0.15);
 }
 .closeButton{
 position: relative;
@@ -45,7 +45,7 @@ transition: all 0.2s ease;
     font-weight: 700;
     letter-spacing: -0.5px;
     margin-bottom: 1.2rem;
-    color: var(--primary-dark);
+    color: #33a14b;
     
 }
 .inputContainer{
@@ -54,14 +54,15 @@ transition: all 0.2s ease;
 .inputContainer label{
     display: block;
     margin-bottom: 0.6rem;
-    color: var(--primary);
+    color: #33a14b;
     font-weight: 600;
     font-size: 0.95rem;
+    
 }
 .inputContainer input{
     width: 100%;
     padding: 0.3rem 1rem;
-    border: 2px solid var(--neutral-light);
+    border: 1px solid #33a14b;
     font-size: 1rem;
     transition: all 0.2s ease;
     background-color: var(--white);
@@ -73,8 +74,8 @@ transition: all 0.2s ease;
 .submitButton{
     width: 100%;
     padding: 0.6rem;
-    background: linear-gradient(135deg, #1b5eb6, #d33751);
-    color: var(--white);
+    background:#33a14b;
+    color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -88,7 +89,7 @@ transition: all 0.2s ease;
     
 }
 .submitButton:hover{
-    background: linear-gradient(135deg, #194e94, #e02e4b);
+    background:#216e32;    
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(12, 35, 64, 0.2);
 }

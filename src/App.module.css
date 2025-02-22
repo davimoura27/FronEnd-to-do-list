@@ -1,19 +1,26 @@
-html,
-body {
 
-    height: 100%;
-    overflow-y: hidden;
-    margin: 0;
-    padding: 0;
-    
-}
 *{
   font-family:'Nunito';
 }
-.container {
+.bodyContainer{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: 100vh;
+ background-image: url("./img/fundo.webp");
+ background-size: cover;
+ width: 100%;
+ position: relative;
+ overflow: hidden;
+}
 
-background: linear-gradient(100deg, #251a1a,rgba(10, 10, 10, 0.692),rgba(24, 26, 37, 0.884));
-min-height: 100vh;
+.container {
+width: 80%;
+height: 80vh;
+background-color:white;
+
+
+
  
 }
 

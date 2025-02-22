@@ -1,43 +1,90 @@
-body {
-    overflow: hidden;
+.containerBody{
     width: 100%;
-    height: 100%;
-
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .container {
+   
   font-size: 1.5rem;
- 
-  height: 50%;
-  display: flex;
-  margin: 40px;
-  align-items: end;
+ width: 50%;
+  height: 50vh;
+  display: flex;  
+  align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 40px;
+ 
+  text-align: center;
   gap: 25px;
-}
-.container h1{
-    width: 600px;
-    font-family: 'Patrick Hand', cursive;
-    color: #16141485; 
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.493); 
   
+    border-radius: 4px;
+}
+
+.text{
+
+
+    padding: 10px;
+    flex-direction: column;
+    border-radius: 4px;
     
 }
-.container h3{
+.container h1{
+    font-size: 2rem;
+    width: 100%;
+    
     font-family: 'Patrick Hand', cursive;
-    color: #16141485; 
+    color: #45d464ee;
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.493); 
+   
+    
+    
 }
+.imgCardContainer{
+  
+    display: flex;
+}
+
+.cardContainer{  
+   
+    display: flex;
+    align-items: self-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    font-size: 1.2rem;
+    color: rgb(97, 109, 117);
+    text-align: start;
+    
+}
+.cardContainer h4{
+    text-align: center;
+}
+.imgContainer{
+width: 50%;
+height: 60vh;
+padding: 30px;
+}
+.imgContainer img{
+   width: 610px;
+   height: 65vh;
+}
+
+
+
 @media(max-width: 1024px){
     .container{
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
     .container h1{
-        width: 300px;
+        
     }
     .container h3{
-        font-size: 1.2rem;
+        font-size: 2rem;
     }
 }
 

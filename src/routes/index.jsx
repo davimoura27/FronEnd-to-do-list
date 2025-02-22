@@ -6,6 +6,7 @@ import { CreatList } from "../pages/Tarefas/indexCreatTarefas"
 
 export const Router = () => {
     return (
+        <div>     
         <Routes>
 
             <Route element={<LayoutHeader />}>
@@ -17,6 +18,7 @@ export const Router = () => {
             <Route path="/lista" element={<CreatList />} />
             </Route>
         </Routes>
+        </div>
 
 
     )

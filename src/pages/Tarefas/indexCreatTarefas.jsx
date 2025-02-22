@@ -106,7 +106,7 @@ export function CreatList() {
 
          <div className={style.container}>
             
-               <h1>Lista de Tarefas</h1>
+               <h1 >Lista de Tarefas</h1>
             
             <div className={style.containerButton}>
 
@@ -143,7 +143,7 @@ export function CreatList() {
                            required
                         />
 
-                        <button type="submit">{editarLista ? "Salvar Edição" : "Criar Tarefa"}</button>
+                        <button className={style.buttonCriarEditar} type="submit">{editarLista ? "Salvar Edição" : "Criar Tarefa"}</button>
                      </div>
                   </div>
                </form>
